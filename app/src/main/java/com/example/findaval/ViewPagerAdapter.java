@@ -18,8 +18,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     private ArrayList<String>fragmentTitleList = new ArrayList<>();
 
 
-    public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-        super(fragmentManager, lifecycle);
+
+    public String getTabTitle(int position){
+
+        return fragmentTitleList.get(position);
+    }
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
     public void addFragment(Fragment fragment, String title){

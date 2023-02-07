@@ -12,8 +12,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.findaval.databinding.ActivityMainBinding;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     FindFriend findFriend;
     ContactList contactList;
     ChatFragment chatFragment;
+    ViewPager2 viewPager2;
+    TabLayout tabLayout;
+    ViewPagerAdapter viewPagerAdapter;
 
 
 
@@ -35,7 +41,26 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        findFriend = new FindFriend();
+        contactList = new ContactList();
+        chatFragment = new ChatFragment();
+
+
+        viewPager2 = binding.viewPager2;
+        tabLayout = binding.tabLayout;
+
+          viewPagerAdapter = new ViewPagerAdapter(this);
+
+        viewPagerAdapter.addFragment(chatFragment, "Chats");
+        viewPagerAdapter.addFragment(findFriend, "Find Friend");
+        viewPagerAdapter.addFragment(contactList, "Contacts");
+
+        viewPager2.setAdapter(viewPagerAdapter);
+
+       // viewPager2.getCurrentItem() = 0;
+
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(viewPagerAdapter.getTabTitle(position ))
+        ).attach();
 
 
 
