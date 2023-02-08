@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,6 +22,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Switch;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,28 +54,71 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = binding.viewPager2;
         tabLayout = binding.tabLayout;
 
-          viewPagerAdapter = new ViewPagerAdapter(this);
 
-        viewPagerAdapter.addFragment(chatFragment, "Chats");
-        viewPagerAdapter.addFragment(findFriend, "Find Friend");
-        viewPagerAdapter.addFragment(contactList, "Contacts");
+
+        ArrayList<Fragment>fragmentArrayList = new ArrayList<>();
+        fragmentArrayList.add( chatFragment);
+        fragmentArrayList.add(findFriend);
+        fragmentArrayList.add(contactList);
+
+        ArrayList<String>fragmentTitleList = new ArrayList<>();
+        fragmentTitleList.add("Chats");
+        fragmentTitleList.add("Find Friend");
+        fragmentTitleList.add("Contacts");
+
+
+          viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
 
         viewPager2.setAdapter(viewPagerAdapter);
+//        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> viewPager2.setCurrentItem(tab.getPosition(), true)
+//
+//        ).attach();
+//
 
-       // viewPager2.getCurrentItem() = 0;
+        new  TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                //tab.setText(viewPagerAdapter.getTabTitle(position));
+                if (position ==0){
+                    tab.setText("Chat");
+                }else if (position == 1){
+                    tab.setText("Find Friend");
+                }else {
+                    tab.setText("Contacts");
+                }
 
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(viewPagerAdapter.getTabTitle(position ))
-        ).attach();
+            }
+        }).attach();
 
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
+            }
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-
+            }
+        });
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        if (viewPager2.getCurrentItem() == 0) {
+//            // If the user is currently looking at the first step, allow the system to handle the
+//            // Back button. This calls finish() on this activity and pops the back stack.
+//            super.onBackPressed();
+//        } else {
+//            // Otherwise, select the previous step.
+//            viewPager2.setCurrentItem(viewPager2.getCurrentItem() - 1);
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.findaval.databinding.FragmentSecondBinding;
+import com.example.findaval.databinding.FragmentFindFriendBinding;
+
 
 public class FindFriend extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentFindFriendBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +22,7 @@ public class FindFriend extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentFindFriendBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,13 +30,7 @@ public class FindFriend extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FindFriend.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
+
     }
 
     @Override

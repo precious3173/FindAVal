@@ -14,36 +14,41 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private ArrayList<Fragment>fragmentArrayList = new ArrayList();
-    private ArrayList<String>fragmentTitleList = new ArrayList<>();
+//    public ArrayList<Fragment>fragmentArrayList = new ArrayList();
+//    public ArrayList<String>fragmentTitleList = new ArrayList<>();
 
-
-
-    public String getTabTitle(int position){
-
-        return fragmentTitleList.get(position);
-    }
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
-    }
-
-    public void addFragment(Fragment fragment, String title){
-
-        fragmentArrayList.add(fragment);
-        fragmentTitleList.add(title);
+    public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
+//        this.fragmentArrayList = fragmentArrayList;
+//        this.fragmentTitleList = fragmentTitleList;
     }
 
 
+//    public String getTabTitle(int position){
+//
+//        return fragmentTitleList.get(position);
+//    }
+//
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return fragmentArrayList.get(position);
+        switch (position){
+            case 0:
+                return new ChatFragment();
+            case 1:
+                return new FindFriend();
+            case 2:
+                return new ContactList();
+
+            default:break;
+        }
+        return null;
     }
 
     @Override
     public int getItemCount() {
-        return fragmentArrayList.size();
+        return 3;
     }
 
 

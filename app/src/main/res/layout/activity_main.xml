@@ -13,7 +13,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#03A9F4"
+            android:background="#F44336"
             android:minHeight="?actionBarSize"
             android:id="@+id/toolbar"
             />
@@ -22,7 +22,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#03A9F4"
+            android:background="#F44336"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -30,7 +30,7 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:ignore="SpeakableTextPresentCheck"
         android:id="@+id/viewPager2"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
