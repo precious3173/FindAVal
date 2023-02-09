@@ -1,5 +1,6 @@
 package com.example.findaval;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     TabLayout tabLayout;
     ViewPagerAdapter viewPagerAdapter;
+    Toolbar toolbar;
 
 
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2 = binding.viewPager2;
         tabLayout = binding.tabLayout;
+        toolbar = binding.toolbar;
 
 
 
@@ -70,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
           viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
 
         viewPager2.setAdapter(viewPagerAdapter);
-//        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> viewPager2.setCurrentItem(tab.getPosition(), true)
-//
-//        ).attach();
-//
 
         new  TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position ==0){
                     tab.setText("Chat");
                 }else if (position == 1){
-                    tab.setText("Find Friend");
+                    tab.setText("Find Match");
                 }else {
                     tab.setText("Contacts");
                 }
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager2.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
@@ -106,19 +107,42 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        toolbar.inflateMenu(R.menu.menu_main);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if (item.getItemId() == R.id.action_settings){
+
+                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                } else{
+
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+
+                return false;
+            }
+        });
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (viewPager2.getCurrentItem() == 0) {
-//            // If the user is currently looking at the first step, allow the system to handle the
-//            // Back button. This calls finish() on this activity and pops the back stack.
-//            super.onBackPressed();
-//        } else {
-//            // Otherwise, select the previous step.
-//            viewPager2.setCurrentItem(viewPager2.getCurrentItem() - 1);
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (viewPager2.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() - 1);
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
