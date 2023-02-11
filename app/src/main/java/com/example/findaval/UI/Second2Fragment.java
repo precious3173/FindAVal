@@ -1,4 +1,4 @@
-package com.example.findaval;
+package com.example.findaval.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.findaval.R;
 import com.example.findaval.databinding.FragmentSecond2Binding;
 
 public class Second2Fragment extends Fragment {

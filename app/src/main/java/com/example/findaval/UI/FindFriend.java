@@ -1,4 +1,4 @@
-package com.example.findaval;
+package com.example.findaval.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.findaval.databinding.FragmentChatFragmentBinding;
+import com.example.findaval.databinding.FragmentFindFriendBinding;
 
 
-public class ChatFragment extends Fragment {
+public class FindFriend extends Fragment {
 
-    private FragmentChatFragmentBinding binding;
+    private FragmentFindFriendBinding binding;
 
     @Override
     public View onCreateView(
@@ -22,13 +22,14 @@ public class ChatFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentChatFragmentBinding.inflate(inflater, container, false);
+        binding = FragmentFindFriendBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
     }
 

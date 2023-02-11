@@ -13,14 +13,14 @@
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Profile"
+            android:name=".UI.Profile"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Settings"
+            android:name=".UI.Settings"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -40,7 +40,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Adapter.ViewPagerAdapter$MainActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.FindAVal.NoActionBar">
