@@ -8,14 +8,37 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:padding="10dp"
-        android:background="@drawable/profile_background"
-        android:src="@drawable/ic_baseline_person_2_24"/>
+        android:id="@+id/constraint">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:padding="5dp"
+            android:id="@+id/profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/profile_background"
+            android:src="@drawable/ic_baseline_person_2_24"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E91E63"
+            app:maxImageSize="30dp"
+            android:id="@+id/add"
+            android:src="@drawable/ic_baseline_photo_camera_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="100dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <RelativeLayout
