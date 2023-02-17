@@ -23,6 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.findaval.Database.ImageConverter;
+import com.example.findaval.Database.ProfileDatabase;
+import com.example.findaval.Database.ProfileEntity;
 import com.example.findaval.R;
 import com.example.findaval.databinding.ActivityProfile2Binding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +41,7 @@ public class Profile extends AppCompatActivity {
  Bitmap bitmap;
  Uri uri;
  Intent openLibraryIntent;
+ ProfileDatabase profileDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class Profile extends AppCompatActivity {
              if(uri != null){
                  try {
                      bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                     binding.profile.setImageBitmap(bitmap);
 
                  } catch (IOException e) {
                      e.printStackTrace();
@@ -139,6 +144,7 @@ public class Profile extends AppCompatActivity {
         );
         openLibraryIntent.setType("image/*");
         activityResultIntent.launch(openLibraryIntent);
+
     }
 
     private void openCamera() {
