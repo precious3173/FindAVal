@@ -1,4 +1,4 @@
 package com.example.findaval.Adapter;
 
-public class ContactAdapter {
+public class ContactAdapter{
 }
