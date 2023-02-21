@@ -40,7 +40,7 @@ Context context;
      void bindview(ContactArray contactArray){
 
          contactResourceBinding.nameText.setText(contactArray.getNameText());
-         contactResourceBinding.status.setText(contactArray.getStatus());
+         contactResourceBinding.number.setText(contactArray.getStatus());
          contactResourceBinding.profile.setImageResource(contactArray.getProfile());
 
      }
