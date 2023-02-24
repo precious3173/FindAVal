@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <PreferenceCategory android:title="Settings">
 
         <SwitchPreference
             android:icon="@drawable/ic_baseline_notifications_24"
             android:summary="Turn on/off notification "
-            android:title="Notifications" />
+            android:title="Notifications"
+            android:key="notification"
+            android:defaultValue="true"
+            />
 
 
         <SwitchPreference
             android:icon="@drawable/ic_baseline_notifications_24"
             android:summary="Turn on/off notification "
-            android:title="Last Seen" />
+            app:title="Last Seen"
+            android:defaultValue="true"
+            android:key="last_seen"/>
 
         <Preference
             android:icon="@drawable/ic_baseline_help_outline_24"
             android:summary="Help Center"
-            android:title="Help" />
+            android:title="Help"
+            android:key="help"/>
 
 
     </PreferenceCategory>
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory android:title="@string/messages_header">
 
         <EditTextPreference
             app:key="signature"

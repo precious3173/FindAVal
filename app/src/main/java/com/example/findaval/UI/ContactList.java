@@ -66,18 +66,20 @@ public class ContactList extends Fragment implements LoaderManager.LoaderCallbac
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         requestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted ->{
 
-                    if (isGranted){
-                        Toast.makeText(getActivity(), "Permission granted", Toast.LENGTH_SHORT).show();
-                    }
+            if (isGranted){
+                Toast.makeText(getActivity(), "Permission granted", Toast.LENGTH_SHORT).show();
+                getContacts();
+            }
 
-                    else {
-                        Toast.makeText(getActivity(), "Permission not granted", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            else {
+                Toast.makeText(getActivity(), "Permission not granted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
     }
 
@@ -101,7 +103,6 @@ public class ContactList extends Fragment implements LoaderManager.LoaderCallbac
 
           if(ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
               getContacts();
-              Toast.makeText(getActivity(), "Photo loading ", Toast.LENGTH_SHORT).show();
           } else {
               requestPermission.launch(Manifest.permission.READ_CONTACTS);
               Toast.makeText(getActivity(), "Permission not granted ", Toast.LENGTH_SHORT).show();

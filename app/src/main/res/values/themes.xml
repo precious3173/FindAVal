@@ -31,4 +31,9 @@
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="Preference" parent="Preference.SwitchPreference">
+        <item name="android:textColor">@color/black</item>
+
+    </style>
 </resources>

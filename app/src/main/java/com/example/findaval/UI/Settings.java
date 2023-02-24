@@ -19,7 +19,7 @@ public class Settings extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                    .replace(android.R.id.content, new SettingsFragment())
+                    .replace(R.id.fragment_container, SettingsFragment.class, null)
                     .commit();
 
     }

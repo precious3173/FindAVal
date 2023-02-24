@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="#E6E2E2">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
@@ -30,7 +30,7 @@
         android:textSize="20sp"
         android:id="@+id/nameText"
         app:layout_constraintBottom_toTopOf="@id/number"
-        android:fontFamily="@font/huglove"
+        android:fontFamily="@font/lobster"
         app:layout_constraintStart_toEndOf="@id/profile"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
@@ -44,7 +44,7 @@
         android:textSize="20sp"
         app:layout_constraintVertical_chainStyle="packed"
         android:id="@+id/number"
-        android:fontFamily="@font/huglove"
+        android:fontFamily="@font/lobster"
         app:layout_constraintStart_toEndOf="@id/profile"
         app:layout_constraintTop_toBottomOf="@id/nameText"
         app:layout_constraintBottom_toBottomOf="parent"/>
