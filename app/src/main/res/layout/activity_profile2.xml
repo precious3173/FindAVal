@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/statusText"
-            android:text="Status"
+            android:text="About Me"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginStart="20dp"
@@ -114,7 +114,7 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="My Status"
+                android:hint="About Me"
                 android:layout_marginStart="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
@@ -124,5 +124,50 @@
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_baseline_edit_24"/>
         </LinearLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_notes_24"
+            android:id="@+id/Location"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LocationText"
+            android:text="Location"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/huglove"
+            android:layout_toRightOf="@+id/Location"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/LocationText"
+            android:layout_marginStart="20dp">
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Location"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_baseline_edit_24"/>
+        </LinearLayout>
+
+
     </RelativeLayout>
 </LinearLayout>
