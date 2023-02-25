@@ -32,21 +32,11 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-//    public ArrayList<Fragment>fragmentArrayList = new ArrayList();
-//    public ArrayList<String>fragmentTitleList = new ArrayList<>();
-
     public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
-//        this.fragmentArrayList = fragmentArrayList;
-//        this.fragmentTitleList = fragmentTitleList;
+
     }
 
-
-//    public String getTabTitle(int position){
-//
-//        return fragmentTitleList.get(position);
-//    }
-//
 
     @NonNull
     @Override

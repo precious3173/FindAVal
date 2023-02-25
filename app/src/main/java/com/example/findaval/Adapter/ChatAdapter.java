@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findaval.Database.ChatArray;
 import com.example.findaval.Database.ContactArray;
+import com.example.findaval.databinding.ChatResourceBinding;
 
 import java.util.List;
 
@@ -38,9 +40,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder> {
     }
 
     public class ChatHolder extends RecyclerView.ViewHolder{
+        public ChatResourceBinding chatResourceBinding;
 
-        public ChatHolder(@NonNull View itemView) {
-            super();
+        public ChatHolder(@NonNull ChatResourceBinding chatResourceBinding) {
+            super(chatResourceBinding.getRoot());
+
+            this.chatResourceBinding = chatResourceBinding;
+        }
+        void bindview(ChatArray chatArray){
+
+            chatResourceBinding.nameText.setText(chatArray.getName());
+            chatResourceBinding.chat.setText(chatArray.getChat());
+            chatResourceBinding.profile.setImageResource(chatArray.getProfile());
         }
     }
 }
