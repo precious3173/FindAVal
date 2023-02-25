@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E6E2E2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/chat_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="5dp"
+            android:id="@+id/profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_person_2_24"
+            android:background="@drawable/profile_background"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/lobster"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:id="@+id/nameText"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:textColor="#F44336"
+            app:layout_constraintBottom_toTopOf="@id/chat"
+            app:layout_constraintStart_toEndOf="@id/profile"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Name"
+            android:id="@+id/chat"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:fontFamily="@font/lobster"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/nameText"
+            app:layout_constraintStart_toEndOf="@id/profile"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

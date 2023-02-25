@@ -17,6 +17,9 @@ public class ProfileEntity {
     @ColumnInfo(name = "status")
     public String status;
 
+    @ColumnInfo(name = "location")
+    public String location;
+
 
     @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
     public byte[] image;
