@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.findaval.Constant;
 import com.example.findaval.R;
 import com.example.findaval.databinding.FragmentSignUPBinding;
 
@@ -19,6 +24,7 @@ public class SignUPFragment extends Fragment {
 
     FragmentSignUPBinding binding;
     EditText fullName, phoneNumber, password, email;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,29 @@ public class SignUPFragment extends Fragment {
       }
       else {
 
+
           binding.signup.isEnabled();
+
+          binding.signup.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  progressBar.isShown();
+
+                  StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                          Constant.URL, new Response.Listener<String>() {
+                      @Override
+                      public void onResponse(String response) {
+
+                      }
+                  }, new Response.ErrorListener() {
+                      @Override
+                      public void onErrorResponse(VolleyError error) {
+
+                          error.printStackTrace();
+                      }
+                  });
+              }
+          });
       }
         return binding.getRoot();
     }
