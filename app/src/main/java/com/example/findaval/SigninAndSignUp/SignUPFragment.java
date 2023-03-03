@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -32,7 +34,7 @@ import java.util.Map;
 public class SignUPFragment extends Fragment {
 
     FragmentSignUPBinding binding;
-    EditText fullName, phoneNumber, password, email;
+
 
 
     @Override
@@ -46,71 +48,83 @@ public class SignUPFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSignUPBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
 
 
 
-      ProgressBar progressBar =  binding.progressbars;
-      fullName = binding.fullname;
-      phoneNumber = binding.phoneNumber;
-      password = binding.password;
-      email = binding.email;
 
-      if(fullName.getText().toString().equals("") && phoneNumber.getText().toString().equals("")
-      && password.getText().toString().equals("") && email.getText().toString().equals("")){
+        return view;
+    }
 
-      binding.signup.setBackgroundColor(R.color.grey);
-      }
-      else {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
 
-          binding.signup.isEnabled();
 
-          binding.signup.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  progressBar.isShown();
 
-                  StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                          Constant.URL, new Response.Listener<String>() {
-                      @Override
-                      public void onResponse(String response) {
 
-                          if(response.equals("successful")){
-                              Intent intent = new Intent(getActivity(), MainActivity.class);
-                              startActivity(intent);
+                        binding.signup.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                          }
-                          else {
+                                if(!binding.fullname.getText().toString().trim().equals("")) {
+                                    if(!binding.email.getText().toString().trim().equals("")){
+                                        if (!binding.phoneNumber.getText().toString().trim().equals("")){
+                                            if(!binding.password.getText().toString().trim().equals("")){
+                                                 //binding.progressbars.is;
 
-                              Toast.makeText(getContext(), "Registration was unsuccessful", Toast.LENGTH_SHORT).show();
-                          }
-                      }
-                  }, new Response.ErrorListener() {
-                      @Override
-                      public void onErrorResponse(VolleyError error) {
+                                                StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                                                        Constant.URL, new Response.Listener<String>() {
+                                                    @Override
+                                                    public void onResponse(String response) {
 
-                          error.printStackTrace();
-                      }
-                  }){
-                      @Override
-                      protected Map<String, String> getParams() throws AuthFailureError{
+                                                        if(response.equals("successful")){
+                                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                            startActivity(intent);
 
-                          Map<String, String>loginDetails = new HashMap<>();
+                                                        }
+                                                        else {
+                                                            Toast.makeText(getContext(), "Registration was unsuccessful", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }, new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
 
-                          loginDetails.put("fullname", fullName.toString());
-                          loginDetails.put("email", email.toString());
-                          loginDetails.put("password", password.toString());
-                          loginDetails.put("phonenumber", phoneNumber.toString());
+                                                        error.printStackTrace();
+                                                    }
+                                                }){
+                                                    @Override
+                                                    protected Map<String, String> getParams() throws AuthFailureError{
 
-                          return loginDetails;
-                      }
-                  };
+                                                        Map<String, String>loginDetails = new HashMap<>();
 
-                  RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                  requestQueue.add(stringRequest);
-              }
-          });
-      }
-        return binding.getRoot();
+                                                        loginDetails.put("fullname", binding.fullname.toString());
+                                                        loginDetails.put("email", binding.email.toString());
+                                                        loginDetails.put("password", binding.password.toString());
+                                                        loginDetails.put("phonenumber", binding.phoneNumber.toString());
+
+                                                        return loginDetails;
+                                                    }
+                                                };
+
+                                                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                                                requestQueue.add(stringRequest);
+                                            }
+
+
+                                    }
+                                        }
+                                    } else {
+                                    Toast.makeText(getContext(), "Field is empty", Toast.LENGTH_SHORT).show();
+
+                                }
+                                }
+                        });
+
+
+
+//
     }
 }

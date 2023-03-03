@@ -51,8 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
             android:hint="Email"
-            android:textColorHint="#4E4A4A"
-            android:inputType="textEmailAddress">
+            android:textColorHint="#4E4A4A">
 
 
         </EditText>
@@ -74,8 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/password"
             android:hint="Mobile Number"
-            android:textColorHint="#4E4A4A"
-            android:inputType="number">
+            android:textColorHint="#4E4A4A">
 
 
         </EditText>
@@ -91,13 +89,13 @@
             android:id="@+id/password"
             android:textColorHint="#4E4A4A"
             android:textColor="@color/black"
-            android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@id/phoneNumber"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/signup"
             android:background="@drawable/button_design"
             android:hint="Password"
+            android:inputType="textPassword"
             >
 
 
@@ -113,7 +111,6 @@
             android:layout_marginTop="40dp"
             android:id="@+id/signup"
             android:textStyle="bold"
-            android:enabled="false"
             app:backgroundTint="#F44336"
             android:background="@drawable/button_design"
             app:layout_constraintTop_toBottomOf="@id/password"
