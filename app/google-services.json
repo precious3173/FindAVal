@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061843655384",
+    "project_id": "findval-ef410",
+    "storage_bucket": "findval-ef410.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061843655384:android:f915ea4d58e994f5ffd5ad",
+        "android_client_info": {
+          "package_name": "com.example.findaval"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061843655384-o0lpo6o9otl32j2bd5scrf9n5q1oirh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL4aVzpMPnNcsMDkHzC3t-TgWC1yoqP3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061843655384-o0lpo6o9otl32j2bd5scrf9n5q1oirh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

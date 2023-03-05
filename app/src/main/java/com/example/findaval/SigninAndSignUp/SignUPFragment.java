@@ -26,6 +26,13 @@ import com.example.findaval.Constant;
 import com.example.findaval.R;
 import com.example.findaval.UI.MainActivity;
 import com.example.findaval.databinding.FragmentSignUPBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +41,10 @@ import java.util.Map;
 public class SignUPFragment extends Fragment {
 
     FragmentSignUPBinding binding;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("users");
+    FirebaseAuth mAuth;
+    FirebaseUser user;
 
 
 
@@ -60,7 +71,7 @@ public class SignUPFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
 
 
@@ -72,45 +83,43 @@ public class SignUPFragment extends Fragment {
                                     if(!binding.email.getText().toString().trim().equals("")){
                                         if (!binding.phoneNumber.getText().toString().trim().equals("")){
                                             if(!binding.password.getText().toString().trim().equals("")){
-                                                 //binding.progressbars.is;
+                                                binding.progressbars.setVisibility(View.VISIBLE);
 
-                                                StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                                                        Constant.URL, new Response.Listener<String>() {
+                                     mAuth.createUserWithEmailAndPassword(binding.email.toString(), binding.password.toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                         @Override
+                                         public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                             if(task.isSuccessful()){
+
+                                                 user = mAuth.getCurrentUser();
+                                                 String id = user.getUid();
+
+                                                DatabaseReference databaseReference= myRef.child(id);
+
+                                                Map<String, String>map = new HashMap<>();
+                                                map.put("id", id);
+                                                map.put("Email", binding.email.getText().toString());
+                                                map.put("Fullname", binding.fullname.getText().toString());
+                                                map.put("phoneNumber", binding.phoneNumber.getText().toString());
+
+                                                databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
-                                                    public void onResponse(String response) {
+                                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                                        if(response.equals("successful")){
-                                                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                                                            startActivity(intent);
-
+                                                        if(task.isSuccessful()){
+                                                            binding.progressbars.setVisibility(View.GONE);
+                                                            Toast.makeText(getContext(), "Registration was successful", Toast.LENGTH_SHORT).show();
                                                         }
-                                                        else {
-                                                            Toast.makeText(getContext(), "Registration was unsuccessful", Toast.LENGTH_SHORT).show();
+                                                        else{
+                                                            binding.progressbars.setVisibility(View.GONE);
+                                                            Toast.makeText(getContext(), "Registration not sueccessful", Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
-                                                }, new Response.ErrorListener() {
-                                                    @Override
-                                                    public void onErrorResponse(VolleyError error) {
+                                                });
 
-                                                        error.printStackTrace();
-                                                    }
-                                                }){
-                                                    @Override
-                                                    protected Map<String, String> getParams() throws AuthFailureError{
-
-                                                        Map<String, String>loginDetails = new HashMap<>();
-
-                                                        loginDetails.put("fullname", binding.fullname.toString());
-                                                        loginDetails.put("email", binding.email.toString());
-                                                        loginDetails.put("password", binding.password.toString());
-                                                        loginDetails.put("phonenumber", binding.phoneNumber.toString());
-
-                                                        return loginDetails;
-                                                    }
-                                                };
-
-                                                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                                                requestQueue.add(stringRequest);
+                                             }
+                                         }
+                                     });
                                             }
 
 
