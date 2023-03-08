@@ -167,7 +167,7 @@ public class SignUPFragment extends Fragment {
                                                         setActivity(getActivity()).setCallbacks(callback).build();
 
                                                 PhoneAuthProvider.verifyPhoneNumber(authOptions);
-                                                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationId, String.valueOf(mResendToken));
+                                             //   PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationId, String.valueOf(mResendToken));
 
 
 //                                     mAuth.createUserWithEmailAndPassword(binding.email.toString(), binding.password.toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

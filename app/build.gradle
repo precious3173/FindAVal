@@ -7,13 +7,13 @@ android {
     namespace 'com.example.findaval'
     compileSdk 33
 
+
     defaultConfig {
         applicationId "com.example.findaval"
         minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -56,4 +56,5 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.hbb20:ccp:2.5.0'
 }
