@@ -68,25 +68,9 @@
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/create_accoun"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintVertical_chainStyle="packed"
-        android:textColor="#ffffff"
-        android:layout_marginTop="15dp"
-        android:id="@+id/create_accoun"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/signin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/createAccount"/>
 
     <ProgressBar
         android:layout_width="100dp"

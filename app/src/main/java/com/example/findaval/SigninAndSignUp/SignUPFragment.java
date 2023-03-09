@@ -42,6 +42,7 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hbb20.CountryCodePicker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +57,10 @@ public class SignUPFragment extends Fragment {
     DatabaseReference myRef = database.getReference("users");
     FirebaseAuth mAuth;
     FirebaseUser user;
+    String countryCode;
     String VerificationId;
+    String number;
+    CountryCodePicker countryCodePicker;
     PhoneAuthProvider.ForceResendingToken mResendToken;
 
 
@@ -89,16 +93,31 @@ public class SignUPFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
 
+          countryCodePicker = binding.countryPicker;
+          countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+              @Override
+              public void onCountrySelected() {
+                 countryCode = countryCodePicker.getSelectedCountryCodeWithPlus();
+
+              }
+          });
+
+
+
+          countryCodePicker.registerCarrierNumberEditText(binding.phoneNumber);
 
                         binding.signup.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
 
                                 if(!binding.fullname.getText().toString().trim().equals("")) {
                                     if(!binding.email.getText().toString().trim().equals("")){
                                         if (!binding.phoneNumber.getText().toString().trim().equals("")){
                                             if(!binding.password.getText().toString().trim().equals("")){
                                                 binding.progressbars.setVisibility(View.VISIBLE);
+                                                number = countryCode+binding.phoneNumber.getText().toString();
+                                                Toast.makeText(getContext(), number, Toast.LENGTH_SHORT).show();
 
 
                                                 PhoneAuthProvider.OnVerificationStateChangedCallbacks callback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
@@ -115,7 +134,7 @@ public class SignUPFragment extends Fragment {
                                                         map.put("id", id);
                                                         map.put("Email", binding.email.getText().toString());
                                                         map.put("Fullname", binding.fullname.getText().toString());
-                                                        map.put("phoneNumber", binding.phoneNumber.getText().toString());
+                                                        map.put("phoneNumber", number);
 
                                                         databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
@@ -143,9 +162,11 @@ public class SignUPFragment extends Fragment {
 
                                                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                                                             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                                            e.printStackTrace();
                                                             // Invalid request
                                                         } else if (e instanceof FirebaseTooManyRequestsException) {
                                                             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                                            e.printStackTrace();
                                                         }
                                                     }
 
@@ -153,7 +174,11 @@ public class SignUPFragment extends Fragment {
                                                     public void onCodeSent(@NonNull String mVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
                                                        VerificationId = mVerificationId;
                                                        mResendToken = token;
-
+                                                     Intent intent = new Intent();
+                                                     intent.putExtra("Id", mVerificationId);
+                                                     Toast.makeText(getContext(),mVerificationId, Toast.LENGTH_SHORT).show();
+                                                     startActivity(intent);
+                                                     binding.progressbars.setVisibility(View.GONE);
 
 
                                                     }
@@ -163,7 +188,7 @@ public class SignUPFragment extends Fragment {
 
                                                 PhoneAuthOptions authOptions = PhoneAuthOptions.newBuilder(
                                                         mAuth
-                                                ).setPhoneNumber(binding.phoneNumber.getText().toString()).setTimeout(60L, TimeUnit.SECONDS).
+                                                ).setPhoneNumber(number).setTimeout(60L, TimeUnit.SECONDS).
                                                         setActivity(getActivity()).setCallbacks(callback).build();
 
                                                 PhoneAuthProvider.verifyPhoneNumber(authOptions);

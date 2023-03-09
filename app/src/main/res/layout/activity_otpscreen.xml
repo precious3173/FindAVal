@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.OTPScreen"
+    android:background="#E6E2E2"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F44336"
+            android:minHeight="?actionBarSize"
+            android:id="@+id/toolbar"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F44336"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
+        android:id="@+id/OTP"
+        android:background="@drawable/button_design"
+        android:textColor="@color/black"
+        android:hint="Enter OTP"
+        android:textColorHint="#635E5E"
+        android:inputType="textEmailAddress">
+
+    </EditText>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:padding="15dp"
+        app:backgroundTint="#F44336"
+        android:background="@drawable/button_design"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:id="@+id/signin"
+        android:text="Register"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
