@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.findaval.Constant;
 import com.example.findaval.R;
 import com.example.findaval.UI.MainActivity;
+import com.example.findaval.UI.OTPScreen;
 import com.example.findaval.databinding.FragmentSignUPBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -118,7 +119,7 @@ public class SignUPFragment extends Fragment {
                                                 binding.progressbars.setVisibility(View.VISIBLE);
                                                 number = countryCode+binding.phoneNumber.getText().toString();
                                                 Toast.makeText(getContext(), number, Toast.LENGTH_SHORT).show();
-
+                                                binding.signup.setEnabled(false);
 
                                                 PhoneAuthProvider.OnVerificationStateChangedCallbacks callback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 
@@ -172,15 +173,10 @@ public class SignUPFragment extends Fragment {
 
                                                     @Override
                                                     public void onCodeSent(@NonNull String mVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                                                       VerificationId = mVerificationId;
-                                                       mResendToken = token;
-                                                     Intent intent = new Intent();
-                                                     intent.putExtra("Id", mVerificationId);
-                                                     Toast.makeText(getContext(),mVerificationId, Toast.LENGTH_SHORT).show();
-                                                     startActivity(intent);
-                                                     binding.progressbars.setVisibility(View.GONE);
 
-
+                                                        VerificationId = mVerificationId;
+                                                        mResendToken = token;
+                                                          activateOTP(VerificationId);
                                                     }
                                                 };
 
@@ -194,44 +190,6 @@ public class SignUPFragment extends Fragment {
                                                 PhoneAuthProvider.verifyPhoneNumber(authOptions);
                                              //   PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationId, String.valueOf(mResendToken));
 
-
-//                                     mAuth.createUserWithEmailAndPassword(binding.email.toString(), binding.password.toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                                         @Override
-//                                         public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//                                             if(task.isSuccessful()){
-//
-//                                                 user = mAuth.getCurrentUser();
-//                                                 String id = user.getUid();
-//
-//                                                DatabaseReference databaseReference= myRef.child(id);
-//
-//                                                Map<String, String>map = new HashMap<>();
-//                                                map.put("id", id);
-//                                                map.put("Email", binding.email.getText().toString());
-//                                                map.put("Fullname", binding.fullname.getText().toString());
-//                                                map.put("phoneNumber", binding.phoneNumber.getText().toString());
-//
-//                                                databaseReference.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                    @Override
-//                                                    public void onComplete(@NonNull Task<Void> task) {
-//
-//                                                        if(task.isSuccessful()){
-//                                                            binding.progressbars.setVisibility(View.GONE);
-//                                                            Toast.makeText(getContext(), "Registration was successful", Toast.LENGTH_SHORT).show();
-//                                                        }
-//                                                        else{
-//                                                            binding.progressbars.setVisibility(View.GONE);
-//                                                            Toast.makeText(getContext(), "Registration not sueccessful", Toast.LENGTH_SHORT).show();
-//                                                        }
-//                                                    }
-//                                                });
-//
-//                                             }
-//                                         }
-//                                     });
-
-
                                             }}}
                                     } else {
                                     Toast.makeText(getContext(), "Field is empty", Toast.LENGTH_SHORT).show();
@@ -242,6 +200,16 @@ public class SignUPFragment extends Fragment {
 
 
 
+
+    }
+
+    private void activateOTP(String mVerificationId) {
+
+        Intent intent = new Intent(getActivity(), OTPScreen.class);
+        intent.putExtra("verificationId", mVerificationId);
+        Toast.makeText(getActivity(),mVerificationId, Toast.LENGTH_SHORT).show();
+        startActivity(intent);
+        binding.progressbars.setVisibility(View.GONE);
 
     }
 

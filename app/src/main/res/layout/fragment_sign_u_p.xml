@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="110dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -133,33 +133,18 @@
             android:layout_marginEnd="70dp"
             android:padding="15dp"
             android:textColor="@color/white"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/signup"
             android:textStyle="bold"
+            android:layout_marginBottom="30dp"
             app:backgroundTint="#F44336"
             android:background="@drawable/button_design"
             app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/signinInstead"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:text="Signup"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            app:layout_constraintVertical_chainStyle="packed"
-            android:textColor="#ffffff"
-            android:layout_marginTop="15dp"
-            android:id="@+id/signinInstead"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/signup"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Sign in instead"/>
 
         <ProgressBar
             android:layout_width="100dp"
@@ -172,10 +157,9 @@
             android:id="@+id/progressbars"
             android:textStyle="bold"
             android:backgroundTint="#F44336"
-            app:layout_constraintTop_toBottomOf="@id/signup"
+            app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
