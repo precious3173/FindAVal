@@ -61,6 +61,7 @@ public class SignUPFragment extends Fragment {
     String countryCode;
     String VerificationId;
     String number;
+    String getCode;
     CountryCodePicker countryCodePicker;
     PhoneAuthProvider.ForceResendingToken mResendToken;
 
@@ -126,8 +127,12 @@ public class SignUPFragment extends Fragment {
                                                     @Override
                                                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
+
+                                                        getCode = phoneAuthCredential.getSmsCode();
                                                         user = mAuth.getCurrentUser();
                                                         String id = user.getUid();
+
+
 
                                                         DatabaseReference databaseReference= myRef.child(id);
 
@@ -176,7 +181,7 @@ public class SignUPFragment extends Fragment {
 
                                                         VerificationId = mVerificationId;
                                                         mResendToken = token;
-                                                          activateOTP(VerificationId);
+                                                          activateOTP(VerificationId, getCode);
                                                     }
                                                 };
 
@@ -203,11 +208,13 @@ public class SignUPFragment extends Fragment {
 
     }
 
-    private void activateOTP(String mVerificationId) {
+    private void activateOTP(String mVerificationId, String getCode) {
 
         Intent intent = new Intent(getActivity(), OTPScreen.class);
-        intent.putExtra("verificationId", mVerificationId);
-        Toast.makeText(getActivity(),mVerificationId, Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putString("verificationId", mVerificationId);
+        bundle.putString("getCode", getCode);
+        intent.putExtras(bundle);
         startActivity(intent);
         binding.progressbars.setVisibility(View.GONE);
 
