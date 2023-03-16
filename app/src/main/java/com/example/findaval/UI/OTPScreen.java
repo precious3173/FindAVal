@@ -34,18 +34,13 @@ public class OTPScreen extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        if(extras != null){
             verificationId = extras.getString("verificationId");
             getCode = extras.getString("getCode");
-
-            binding.OTP.setText(getCode);
-
             binding.signin.setEnabled(true);
-        }
-        else{
             binding.signin.setEnabled(false);
-        }
 
+
+        binding.OTP.setText(getCode);
         binding.OTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

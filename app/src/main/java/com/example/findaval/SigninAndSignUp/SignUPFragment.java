@@ -181,7 +181,7 @@ public class SignUPFragment extends Fragment {
 
                                                         VerificationId = mVerificationId;
                                                         mResendToken = token;
-                                                          activateOTP(VerificationId, getCode);
+                                                          activateOTP(mVerificationId);
                                                     }
                                                 };
 
@@ -208,7 +208,7 @@ public class SignUPFragment extends Fragment {
 
     }
 
-    private void activateOTP(String mVerificationId, String getCode) {
+    private void activateOTP(String mVerificationId) {
 
         Intent intent = new Intent(getActivity(), OTPScreen.class);
         Bundle bundle = new Bundle();
