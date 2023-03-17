@@ -20,7 +20,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 public class OTPScreen extends AppCompatActivity {
 
     String verificationId;
-    String getCode;
+    PhoneAuthProvider.ForceResendingToken token;
     ActivityOtpscreenBinding binding;
     FirebaseAuth auth;
     @Override
@@ -32,15 +32,20 @@ public class OTPScreen extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        Bundle extras = getIntent().getExtras();
+            verificationId = getIntent().getStringExtra("verificationId").toString();
+            token= getIntent().getParcelableExtra("token");
 
-            verificationId = extras.getString("verificationId");
-            getCode = extras.getString("getCode");
+
             binding.signin.setEnabled(true);
+
             binding.signin.setEnabled(false);
+            binding.OTP.setText("null");
+            Toast.makeText(getApplicationContext(), verificationId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), verificationId, Toast.LENGTH_SHORT).show();
 
 
-        binding.OTP.setText(getCode);
+
+        binding.OTP.setText(verificationId);
         binding.OTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

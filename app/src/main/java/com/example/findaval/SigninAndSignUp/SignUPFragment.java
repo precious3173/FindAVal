@@ -181,7 +181,7 @@ public class SignUPFragment extends Fragment {
 
                                                         VerificationId = mVerificationId;
                                                         mResendToken = token;
-                                                          activateOTP(mVerificationId);
+                                                          activateOTP(VerificationId, mResendToken);
                                                     }
                                                 };
 
@@ -208,13 +208,11 @@ public class SignUPFragment extends Fragment {
 
     }
 
-    private void activateOTP(String mVerificationId) {
+    private void activateOTP(String mVerificationId, PhoneAuthProvider.ForceResendingToken token) {
 
         Intent intent = new Intent(getActivity(), OTPScreen.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("verificationId", mVerificationId);
-        bundle.putString("getCode", getCode);
-        intent.putExtras(bundle);
+        intent.putExtra("verificationId", mVerificationId);
+        intent.putExtra("token", token);
         startActivity(intent);
         binding.progressbars.setVisibility(View.GONE);
 
